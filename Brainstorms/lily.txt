@@ -1,0 +1,68 @@
+High-Level Conceptual Database Schema
+           Trainers, classes, schedule
+
+
+                                  +-------------------------------+
+                                  |           TRAINING            |
+                                  |-------------------------------|
+                                  | Any training service offered  |
+                                  | by the fitness center,        |
+                                  | including group classes and   |
+                                  | personal training sessions.   |
+                                  +-------------------------------+
+                                                 |
+                                               | is scheduled as
+                                                 |
+                                                1:N
+                                  +-------------------------------+
+                                  |       TRAINING SCHEDULE       |
+                                  |-------------------------------|
+                                  | A scheduled training session  |
+                                  | with date, time, trainer and  |
+                                  | optional room.                |
+                                  +-------------------------------+
+                                   /                         \
+                                  /                           \
+                        leads 1:N/                             \1:N takes place in
+                                /                               \
+                               /                                 \
+      +-------------------------------+          +-------------------------------+
+      |            TRAINER            |          |          ROOM (?)             |
+      |-------------------------------|          |-------------------------------|
+      | Fitness center staff who      |          | Physical location where       |
+      | conduct training sessions.    |          | scheduled training takes      |
+      +-------------------------------+          | place.                        |
+                     |                           | Under consideration because   |
+                     |                           | it is not required by the     |
+         M:N has specialization                  | project specification.        |
+                     |                            +-------------------------------+
+                     |
+                     |
+      +-------------------------------+
+      |        SPECIALIZATION         |
+      |-------------------------------|
+      | Area of expertise or          |
+      | certification of a trainer.   |
+      +-------------------------------+
+
+
+Notes
+
+Training
+├── Group Class
+└── Personal Training
+
+Room is optional
+⸻
+Trainer → Training Schedule
+1 : N
+One trainer can conduct many scheduled training sessions. Each scheduled training session is conducted by one trainer.
+Training → Training Schedule
+1 : N
+One training type (group class or personal training) can have many scheduled sessions. Each schedule entry belongs to one training type.
+Trainer ↔ Specialization
+M : N
+Trainers may have multiple specializations, and one specialization may belong to multiple trainers.
+Room → Training Schedule (optional)
+1 : N
+One room can host many scheduled training sessions. Each scheduled session takes place in one room.
