@@ -1,1 +1,3 @@
 Attendance & Equipment
+・list of available equipment
+・status? of available equipment...
