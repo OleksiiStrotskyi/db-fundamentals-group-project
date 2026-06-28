@@ -1,6 +1,0 @@
-Attendance & Equipment
-・list of available equipment
-・status of available equipment (repairing, ready to use, out of use...)
-・planned new equipment?
-・attendance time & date of individuals
-...
