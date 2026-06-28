@@ -1,0 +1,98 @@
+1) EQUIPMENT
++------------------------------------------------------+
+|                     EQUIPMENT                        |
++------------------------------------------------------+
+| equipment_id                                         |
+| name                                                 |
+| number                                               |
+| brand                                                |
+| model                                                |
+| serial_number                                        |
+| location_in_gym                                      |
+| cost                                                 |
+| warranty_until                                       |
+| status                                               |
+| created_at                                           |
+| updated_at                                           |
++------------------------------------------------------+
+Status flow:
+EQUIPMENT
+   |
+   +----------------------+
+   |                      |
+   v                      v
+READY TO USE        REPAIRING                OUT OF USE
+                        |                         |
+                        |                         |
+                        v                         v
+          +---------------------------+   +----------------------------+
+          |      EQUIPMENT_REPAIR     |   |   EQUIPMENT_REPLACEMENT    |
+          +---------------------------+   +----------------------------+
+          | repair_id                 |   | replacement_id            |
+          | equipment_id              |   | equipment_id              |
+          | repairer_type             |   | expected_new_item_date    |
+          | repairer_name             |   | status                    |
+          | scheduled_repair_date     |   | notes                     |
+          | estimated_ready_datetime  |   +----------------------------+
+          | notes                     |
+          +---------------------------+
+Replacement status values:
+ORDERED
+SHIPPING
+ARRIVED
+READY TO INSTALL
+INSTALLED
+2) ATTENDANCE
++------------------------------------------------------+
+|                     ATTENDANCE                       |
++------------------------------------------------------+
+| attendance_id                                        |
+| member_id                                           |
+| member_name                                         |
+| membership_type                                     |
+| checkin_time                                        |
+| checkout_time                                       |
+| date                                                |
+| staff_id                                            |
+| checkin_type                                        |
+| attendance_type                                     |
+| created_at                                          |
++------------------------------------------------------+
+Check-in type:
+WITH CARD
+WITH APP
+MANUAL (RECEPTION)
+OTHER
+Attendance type:
+FITNESS CLASS
+TRAINING WITH THE TRAINER
+REGULAR PERSONAL VISIT
+Staff & Member relationships:
++----------------------+        +----------------------+
+|        STAFF         |        |        MEMBER        |
++----------------------+        +----------------------+
+| staff_id             |        | member_id            |
+| name                 |        | name                 |
+| role                 |        | membership_type      |
+| phone                |        | phone                |
++----------------------+        | email                |
+                                +----------------------+
+Reserved Future Attendance Sessions
++-----------------------------------------------------------+
+|               ATTENDANCE_RESERVATION                      |
++-----------------------------------------------------------+
+| reservation_id                                            |
+| member_id                                                |
+| reservation_type                                         |
+| service_id                                               |
+| title                                                    |
+| start_datetime                                           |
+| end_datetime                                             |
+| capacity                                                 |
+| booked_spots                                             |
+| status                                                   |
+| created_at                                               |
++-----------------------------------------------------------+
+Reservation type:
+PERSONAL TRAINING
+FITNESS CLASS
