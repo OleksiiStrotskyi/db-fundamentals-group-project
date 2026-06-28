@@ -18,9 +18,9 @@
 Status flow:
 EQUIPMENT
    |
-   +----------------------+
-   |                      |
-   v                      v
+   +--------------------+-------------------------+
+   |                    |                         |
+   v                    v                         v
 READY TO USE        REPAIRING                OUT OF USE
                         |                         |
                         |                         |
@@ -34,40 +34,43 @@ READY TO USE        REPAIRING                OUT OF USE
           | repairer_name             |   | status                    |
           | scheduled_repair_date     |   | notes                     |
           | estimated_ready_datetime  |   +----------------------------+
-          | notes                     |
-          +---------------------------+
-Replacement status values:
-ORDERED
-SHIPPING
-ARRIVED
-READY TO INSTALL
-INSTALLED
+          | notes                     |                |
+          +---------------------------+                v 
+                                           +----------------------------+ 
+                                           |  Replacement status values:|
+                                           |  ORDERED                   |
+                                           |  SHIPPING                  |
+                                           |  ARRIVED                   |
+                                           |  READY TO INSTALL          |
+                                           |  INSTALLED                 |
+                                           +----------------------------+
 2) ATTENDANCE
 +------------------------------------------------------+
 |                     ATTENDANCE                       |
 +------------------------------------------------------+
 | attendance_id                                        |
-| member_id                                           |
-| member_name                                         |
-| membership_type                                     |
-| checkin_time                                        |
-| checkout_time                                       |
-| date                                                |
-| staff_id                                            |
-| checkin_type                                        |
-| attendance_type                                     |
-| created_at                                          |
+| member_id                                            |
+| member_name                                          |
+| membership_type                                      |
+| checkin_time                                         |
+| checkout_time                                        |
+| date                                                 |
+| staff_id                                             |
+| checkin_type                                         |
+| attendance_type                                      |
+| created_at                                           |
 +------------------------------------------------------+
-Check-in type:
-WITH CARD
-WITH APP
-MANUAL (RECEPTION)
-OTHER
-Attendance type:
-FITNESS CLASS
-TRAINING WITH THE TRAINER
-REGULAR PERSONAL VISIT
-Staff & Member relationships:
++----------------------+   +-------------------------+
+|Check-in type:        |   |Attendance type:         |
+|WITH CARD             |   |FITNESS CLASS            |
+|WITH APP              |   |TRAINING WITH THE TRAINER|
+|MANUAL (RECEPTION)    |   |REGULAR PERSONAL VISIT   |
+|OTHER                 |   +-------------------------+
++----------------------+  
+
+
+
+Staff & Members who checked in:
 +----------------------+        +----------------------+
 |        STAFF         |        |        MEMBER        |
 +----------------------+        +----------------------+
@@ -82,16 +85,14 @@ Reserved Future Attendance Sessions
 |               ATTENDANCE_RESERVATION                      |
 +-----------------------------------------------------------+
 | reservation_id                                            |
-| member_id                                                |
-| reservation_type                                         |
-| service_id                                               |
-| title                                                    |
-| start_datetime                                           |
-| end_datetime                                             |
-| capacity                                                 |
-| booked_spots                                             |
-| status                                                   |
-| created_at                                               |
+| member_id                                                 |
+| reservation_type                                          |
+| service_id                                                |
+| title                                                     |
+| date&time                                                 |
+| booked_spots/capacity(if no specific spots)               |
+| status                                                    |
+| created_at                                                |
 +-----------------------------------------------------------+
 Reservation type:
 PERSONAL TRAINING
