@@ -1,0 +1,94 @@
+
+                                  +-------------------------------+
+                                  |             USERS             |
+                                  |-------------------------------|
+                                  | Single authentication table   |
+                                  | for all system users with     |
+                                  | the "User" role.              |
+                                  +-------------------------------+
+                                                 |
+                                                 | extends via 1:1
+                                                 |
+                                                1:1
+                                  +-------------------------------+
+
+                                  |            MEMBERS            |
+                                  |-------------------------------|
+                                  | Client profile: personal data,|
+                                  | bio, fitness progress, and    |
+                                  | financial history.            |
+                                  +-------------------------------+
+                                 /     /         |         \     \
+                                /     /          |          \     \
+                        1:N    /     /           |           \     \ 1:N logs diary
+                   buys packs /     / 1:N        |            \     \
+                             /     / earns       |             \     \
+                            /     /              |              \     \
+  +-------------------------------+              |               +-------------------------------+
+
+  |         BILLING_PACKS         |              |               |        NUTRITION_DIARY        |
+  |-------------------------------|              |               |-------------------------------|
+  | Purchased services (passes,   |              |               | Daily macronutrients log with |
+  | pool, VIP) with unique type   |              |               | detailed protein sources      |
+  | validation rules.             |              |               | (Whey, Eggs, Chicken, etc.).  |
+  +-------------------------------+              |               +-------------------------------+
+
+                                                 |                               |
+                                                 |                               | records 1:N
+   +-------------------------------+             |                               |
+
+   |        MEMBER_REWARDS         |             |                              1:N
+   |-------------------------------|             |               +-------------------------------+
+   | Earned badges, issued either  |             |               |        MEMBERSCLASSES        |
+   | automatically via triggers or |             |               |-------------------------------|
+   | manually by a trainer.        |             |               | Junction table for client     |
+   +-------------------------------+             |               | enrollment in specific group  |
+
+                                                 |               | classes.                      |
+                   |                             |               +-------------------------------+
+                   |                             |                               |
+                   | tracks for 1:N              |                               |
+                   |                             |                               | belongs to 1:N
+   +-------------------------------+             |                               |
+
+   |        PROGRESS_METRICS       |             | tracks 1:N                    |
+
+   |-------------------------------|             |                               |
+   | Physical body metrics (weight,|             |                               |
+   | body fat %, etc.) to analyze  |             |                               |
+   | results over time.            |             |                               |
+   +-------------------------------+             |                               |
+
+                                                 |                               |
+                                  +-------------------------------+              |
+
+                                  |        MEMBERSATTENDENT       |              |
+                                  |-------------------------------|              |
+                                  | Junction table linking a      | <------------+
+                                  | member to each individual     |
+                                  | workout attendance.           |
+                                  +-------------------------------+
+
+                                           |             |
+                        contains info for  |             | 1:N books
+                                          1:1            |
+                                           |             v
+                                  +-------------------------------+
+
+                                  |          ATTENDANCE           |
+                                  |-------------------------------|
+                                  | Exact date and timestamp of   |
+                                  | the member's physical check-in|
+                                  | at the center.                |
+                                  +-------------------------------+
+                                                 ^
+                                                 | confirms check-in for 1:1
+                                                 |
+                                  +-------------------------------+
+
+                                  |       PERSONAL_TRAINING       |
+                                  |-------------------------------|
+                                  | One-on-one training sessions. |
+                                  | Billed completely separately  |
+                                  | from general gym floor access.|
+                                  +-------------------------------+
